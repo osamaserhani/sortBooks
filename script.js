@@ -1,34 +1,46 @@
 var books = [
   {
-    title: '[Title  : React Quickly: Painless web apps with React, JSX, Redux, and GraphQL]',
-    url: 'google.com',
-    date_published: '[date_published  : Sep 28, 2017]     ',
-    author: '[author  :Azat Mardan]     ',
-    reviews: '[reviews  : 34]     ',
-    rate: '[rate  : 4.7]     ',
-    img: 'https://images-na.ssl-images-amazon.com/images/I/5159foIB0EL._AC_US218_.jpg'
+    title: '[Title  : True Fiction ]' ,
+    date_published: '[date_published  : Sep 3, 2017]     ' ,
+    dp:2017,
+    author: '[author  :Lee Goldberg]     ',
+    reviews: '[reviews  : 750]     ',
+    r:750,
+    rate: '[rate  : 4.4]     ',
+    nRate : 4.4,
+    img: 'https://images-na.ssl-images-amazon.com/images/I/51UbplnqSgL.jpg',
+    price : '[Price  : 9.99]',
+    nprice : 9.99
   }, {
-    title: '[Title  : React Quickly: Painless web apps with React, JSX, Redux, and GraphQL]',
-    url: 'google.com',
-    date_published: '[date_published  : Sep 28, 2017]     ',
-    author: '[author  :Azat Mardan]     ',
-    reviews: '[reviews  : 34]     ',
-    rate: '[rate  : 4.7]     ',
-    img: 'https://images-na.ssl-images-amazon.com/images/I/5159foIB0EL._AC_US218_.jpg'
+    title: '[Title  :Harry Potter and the Sorcerers Stone ]' ,
+    date_published: '[date_published  : Sep 5, 2015]     ' ,
+    dp:2015,
+    author: '[author  :J.K. Rowling ]     ',
+    reviews: '[reviews  : 16000]     ',
+    r:16000,
+    rate: '[rate  : 4.8]     ',
+    nRate : 4.8,
+    img: 'https://images-na.ssl-images-amazon.com/images/I/51qlgJ6ZojL.jpg',
+    price : '[Price  : 15.99]',
+    nprice : 15.99
   },
-  {    title: '[Title  : React Quickly: Painless web apps with React, JSX, Redux, and GraphQL]',
-   url: 'google.com',
-   date_published: '[date_published  : Sep 28, 2017]     ',
-   author: '[author  :Azat Mardan]     ',
-   reviews: '[reviews  : 34]     ',
+  {     title: '[Title  : The Girl Who Dared to Think 6 ]' ,
+   date_published: '[date_published  : Sep 5, 2013]     ' ,
+   dp:2013,
+   author: '[author  :Bella Forrest ]     ',
+   reviews: '[reviews  : 18]     ',
+   r:18,
    rate: '[rate  : 4.7]     ',
-   img: 'https://images-na.ssl-images-amazon.com/images/I/5159foIB0EL._AC_US218_.jpg'
+   nRate : 4.7,
+   img: 'https://images-na.ssl-images-amazon.com/images/I/51wmkyVUS9L.jpg',
+   price : '[Price  : 5.99]',
+   nprice : 5.99
   }
 
   // add more book items here
 ]
 // Default sort
-sortByReviews()
+priceHigh()
 upDateDOM()
 
 function createBookItem(bookObj) {
@@ -56,6 +68,8 @@ function createBookItem(bookObj) {
   var aText2 = document.createTextNode(bookObj.author)
   var aText3 = document.createTextNode(bookObj.reviews)
   var aText4 = document.createTextNode(bookObj.rate)
+  var aText5 = document.createTextNode(bookObj.price)
+
 
   img.src=bookObj.img
 
@@ -70,6 +84,8 @@ liElem2.appendChild(aText1)
   liElem2.appendChild(aText3)
   liElem2.appendChild(aText4)
   liElem2.appendChild(aText2)
+  liElem2.appendChild(aText5)
+
 
   ulElem.appendChild(liElem2)
   liElem.appendChild(ulElem)
@@ -79,18 +95,55 @@ liElem2.appendChild(aText1)
   return liElem
 }
 
-function sortByReviews (){
+function priceHigh (){
   books.sort(function (a, b) {
-    // implment your compare function here
+return b.nprice-a.nprice;
+  })
+}
+function pricelow (){
+  books.sort(function (a, b) {
+    return a.nprice-b.nprice;
+  })
+}
+function Dateold (){
+  books.sort(function (a, b) {
+    return a.dp-b.dp;
+  })
+}
+function Datenew (){
+  books.sort(function (a, b) {
+    return b.dp-a.dp;
+  })
+}
+function reviewsHigh (){
+  books.sort(function (a, b) {
+    return b.r-a.r;
+  })
+}
+function reviewslow (){
+  books.sort(function (a, b) {
+    return a.r-b.r;
+  })
+}
+function StarsHigh (){
+  books.sort(function (a, b) {
+    return b.nRate-a.nRate;
+  })
+}
+function Starslow (){
+  books.sort(function (a, b) {
+    return a.nRate-b.nRate;
   })
 }
 
 function upDateDOM() {
   var ulBooks = document.getElementById('books-list')
+  var b = document.getElementById('br')
   ulBooks.innerHTML = ''
   for (item of books) {
     
     ulBooks.appendChild(createBookItem(item))
+   
   }
  
 }
@@ -99,15 +152,30 @@ function upDateDOM() {
 var select = document.getElementById("sort-news")
 select.onchange = function () {
   if (select.value === 'priceHigh') {
-    sortByReviews()
+    priceHigh()
     upDateDOM()
   }
   else if (select.value === 'priceLow') {
-    sortByPriceLow()
+    pricelow()
     upDateDOM()
   }
-  else if (select.value === 'rating') {
-    sortByRating()
+  else if (select.value === 'Dateold') {
+    Dateold()
+    upDateDOM()
+  } else if (select.value === 'Datenew') {
+    Datenew()
+    upDateDOM()
+  } else if (select.value === 'reviewsHigh') {
+    reviewsHigh()
+    upDateDOM()
+  } else if (select.value === 'reviewslow') {
+    reviewslow()
+    upDateDOM()
+  } else if (select.value === 'StarsHigh') {
+    StarsHigh()
+    upDateDOM()
+  } else if (select.value === 'Starslow') {
+    Starslow()
     upDateDOM()
   }
 }
