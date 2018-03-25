@@ -1,41 +1,18 @@
 body{
-  background-color: white;
+  background-color: #0e121a; 
+  color: white;
 }
-ul,li {
-  font-size: 15;
-  align-items:center;
-  border-bottom-style: groove
-  color: blue;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-right: 50px;
-  margin-left: 50px;
-  display: inline;
+ul,lo {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color:#ff4e00;
+  font-size: 18;
+  
+}
 
-}
 img{
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-right: 50px;
-  margin-left: 50px;
+  padding: 30;
 
-}
-
-
-
-
-a:link {
-  color: red;
-}
-
-a:visited {
-  color: green;
-}
-
-a:hover {
-  color: hotpink;
-}
-
-a:active {
-  color: blue;
 }
